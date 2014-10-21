@@ -1,5 +1,5 @@
 <li>
-<strong><%= task.title %></strong> -- <%= task.description %>-<%= task.completed%>
+<strong><%= task.title %></strong> -- <%= task.description %>
 
 <%= form_for task do |form| %>
   <%= form.hidden_field :completed, value: 1 %>
