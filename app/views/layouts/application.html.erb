@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div id="session">
+    <% if signed_in? %>
+      <p><%= current_user.email %></p>
+      <%= link_to "Sign out", session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in", new_session_path %>
+      <%= link_to "Sign up", new_user_path %>
+    <% end %>
+  </div>
+    <%= yield %>
 
 </body>
 </html>
