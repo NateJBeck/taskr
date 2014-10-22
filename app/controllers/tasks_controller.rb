@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :require_login
+
   def index
     @tasks = current_user.tasks.incomplete
     @task = Task.new
@@ -7,12 +9,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
 
-    if @task.save
-      render @task
-    else
-      @tasks = current_user.tasks.incomplete
-      render :index
-    end
+    render @task
   end
 
   def update
@@ -29,3 +26,4 @@ class TasksController < ApplicationController
   end
 
 end
+
