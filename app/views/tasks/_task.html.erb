@@ -1,12 +1,21 @@
 <li id="<%= dom_id(task) %>">
 <strong><%= task.title %></strong> -- <%= task.description %>
 
-<%= form_for task, html: { class: "complete_form" } do |form| %>
-  <%= form.hidden_field :completed, value: 1 %>
-  <%= form.submit "Complete Task" %>
-<% end %>
+<% if ! task.completed %>
+    <%= form_for task, html: { class: "complete_form" } do |form| %>
+      <%= form.hidden_field :completed, value: 1 %>
+      <%= form.submit "Complete Task" %>
+    <% end %>
 
-<%= form_for task, method: :delete, html: { class: "delete_form" } do |form| %>
-  <%= form.submit "Delete this Task" %>
+<% else %>
+
+    <%= form_for task, html: { class: "uncomplete_form" } do |form| %>
+      <%= form.hidden_field :completed, value: 0 %>
+      <%= form.submit "Mark Task as Not Completed" %>
+    <% end %>
+
 <% end %>
+  <%= form_for task, method: :delete, html: { class: "delete_form" } do |form| %>
+    <%= form.submit "Delete this Task" %>
+  <% end %>
 </li>
