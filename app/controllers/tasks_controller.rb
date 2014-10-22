@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @incomplete_tasks = current_user.tasks.incomplete
-    @complete_tasks = current_user.tasks.complete
+    @complete_tasks = current_user.tasks.complete.order("created_at DESC")
     @task = Task.new
   end
 
@@ -24,10 +24,19 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = current_user.tasks.find(params[:id])
-    task.update(task_params)
+    @task = current_user.tasks.find(params[:id])
+    @task.update(task_params)
 
-    redirect_to tasks_path
+    render @task
+
+ #   redirect_to tasks_path
+  end
+
+  def destroy
+    task = current_user.tasks.find(params[:id])
+    task.destroy
+
+    render json: { task_id: task.id }
   end
 
   private
