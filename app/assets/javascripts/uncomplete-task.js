@@ -17,8 +17,9 @@ $(function() {
 
   var addTaskToIncomplete = function(taskHTML) {
     var taskList = $("ul#incomplete-task-list");
-
-    taskList.prepend(taskHTML);
+    var element = $(taskHTML).hide();
+    taskList.prepend(element);
+    element.fadeIn();
   }
 
   $("body").on("submit", "form.uncomplete_form", postUnCompleteTask);
