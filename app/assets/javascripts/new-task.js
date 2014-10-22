@@ -5,6 +5,7 @@ $(function() {
     var taskData = newTaskForm.serialize();
     var conversation = $.ajax({ url: "/tasks", type: "POST", data: taskData });
     conversation.done(addTaskToList);
+    resetForm();
     return false;
   };
 
