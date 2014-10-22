@@ -8,12 +8,11 @@ $(function() {
       type: "POST",
       data: taskData
     });
+
     conversation.done(addTaskToList);
-    resetForm();
+    conversation.fail(onFailure);
     return false;
   };
-
-  newTaskForm.submit(postTaskDataToServer);
 
   var resetForm = function() {
     newTaskForm.find("#task_title, #task_description").val("");
@@ -21,8 +20,21 @@ $(function() {
   };
 
   // render @task result comes in here
+  // Successful form
   var addTaskToList = function(taskHTML) {
     var taskList = $("ul#incomplete-task-list");
     taskList.prepend(taskHTML);
+    $("#errors").html("");
+
+    resetForm();
   };
+
+  // Failed form
+  var onFailure = function(ajaxObject) {
+    var htmlFromServer = ajaxObject.responseText;
+    $("#errors").html(htmlFromServer);
+  };
+
+  newTaskForm.submit(postTaskDataToServer);
+
 });

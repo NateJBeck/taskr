@@ -13,9 +13,13 @@ class TasksController < ApplicationController
     if @task.save
       render @task
     else
-      @complete_tasks = current_user.tasks.complete
-      @incomplete_tasks = current_user.tasks.incomplete
-      render :index
+    #  render text: "You messed up", status: 422
+      render partial: "error_messages",
+        locals: { target: @task },
+        status: 422
+    #   @complete_tasks = current_user.tasks.complete
+    #   @incomplete_tasks = current_user.tasks.incomplete
+    #   render :index
     end
   end
 
