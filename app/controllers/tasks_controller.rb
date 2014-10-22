@@ -2,14 +2,21 @@ class TasksController < ApplicationController
   before_action :require_login
 
   def index
-    @tasks = current_user.tasks.incomplete
+    @incomplete_tasks = current_user.tasks.incomplete
+    @complete_tasks = current_user.tasks.complete
     @task = Task.new
   end
 
   def create
     @task = current_user.tasks.build(task_params)
 
-    render @task
+    if @task.save
+      render @task
+    else
+      @complete_tasks = current_user.tasks.complete
+      @incomplete_tasks = current_user.tasks.incomplete
+      render :index
+    end
   end
 
   def update

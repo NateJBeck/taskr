@@ -3,7 +3,11 @@ $(function() {
 
   var postTaskDataToServer = function() {
     var taskData = newTaskForm.serialize();
-    var conversation = $.ajax({ url: "/tasks", type: "POST", data: taskData });
+    var conversation = $.ajax({ 
+      url: "/tasks", 
+      type: "POST",
+      data: taskData
+    });
     conversation.done(addTaskToList);
     resetForm();
     return false;
@@ -11,8 +15,14 @@ $(function() {
 
   newTaskForm.submit(postTaskDataToServer);
 
-  var addTaskToList = function(task) {
-    var taskList = $("#task-list");
-    taskList.prepend(task);
+  var resetForm = function() {
+    newTaskForm.find("#task_title, #task_description").val("");
+    newTaskForm.find("#task_title").focus();
+  };
+
+  // render @task result comes in here
+  var addTaskToList = function(taskHTML) {
+    var taskList = $("ul#incomplete-task-list");
+    taskList.prepend(taskHTML);
   };
 });
