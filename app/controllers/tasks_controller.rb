@@ -14,9 +14,11 @@ class TasksController < ApplicationController
       render @task
     else
     #  render text: "You messed up", status: 422
+
       render partial: "error_messages",
         locals: { target: @task },
         status: 422
+
     #   @complete_tasks = current_user.tasks.complete
     #   @incomplete_tasks = current_user.tasks.incomplete
     #   render :index
@@ -36,7 +38,8 @@ class TasksController < ApplicationController
     task = current_user.tasks.find(params[:id])
     task.destroy
 
-    render json: { task_id: task.id }
+    #render json: { task_id: task.id }
+    render nothing: true
   end
 
   private

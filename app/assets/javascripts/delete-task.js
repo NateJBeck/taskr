@@ -1,5 +1,5 @@
 $(function() {
-  var postDeleteTask = function() {
+  var deleteTask = function() {
     var theElement = $(this);
     var taskData = theElement.serialize();
 
@@ -15,7 +15,7 @@ $(function() {
     return false;
   };
 
-  $("body").on("submit", "form.delete_form", postDeleteTask);
+  $("body").on("submit", ".delete_form", deleteTask);
 });
 
   // var deleteTask = function(data) {
@@ -24,4 +24,3 @@ $(function() {
   //
   //   //console.log("DELETED!!!!!!!!!!!");
   // };
-  

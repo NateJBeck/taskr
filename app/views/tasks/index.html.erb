@@ -20,12 +20,12 @@
   </div>
 <% end %>
 
-<h1>Incomplete Tasks</h1>
+<h1 id="incomplete-header" data-list-id="incomplete-task-list">Incomplete Tasks</h1>
 <ul id="incomplete-task-list">
   <%= render @incomplete_tasks  %>
 </ul>
 
-<h1>Complete Tasks</h1>
+<h1 id="complete-header" data-list-id="complete-task-list">Complete Tasks</h1>
 <ul id="complete-task-list">
   <%= render @complete_tasks %>
 </ul>

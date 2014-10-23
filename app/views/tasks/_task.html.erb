@@ -1,7 +1,7 @@
 <li id="<%= dom_id(task) %>">
 <strong><%= task.title %></strong> -- <%= task.description %>
 
-<% if ! task.completed %>
+<% if ! task.completed? %>
     <%= form_for task, html: { class: "complete_form" } do |form| %>
       <%= form.hidden_field :completed, value: 1 %>
       <%= form.submit "Complete Task" %>
