@@ -7,7 +7,7 @@ jQuery.fn.highlight = function() {
       .height(el.height())
       .css({
         "position": "absolute",
-        "background-color": "#ffff99",
+        "background-color": "#00FF00",
         "opacity": ".9"
       })
       .fadeOut(500);
